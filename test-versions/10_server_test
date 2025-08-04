@@ -1,0 +1,446 @@
+package com.kakao.taxi.test.service
+
+import android.accessibilityservice.AccessibilityService
+import android.accessibilityservice.GestureDescription
+import android.app.*
+import android.content.*
+import android.graphics.*
+import android.media.projection.MediaProjection
+import android.media.projection.MediaProjectionManager
+import android.os.*
+import android.util.Log
+import android.view.*
+import android.view.accessibility.AccessibilityEvent
+import android.view.accessibility.AccessibilityNodeInfo
+import android.widget.Toast
+import kotlinx.coroutines.*
+import java.io.DataOutputStream
+
+/**
+ * 비루팅 환경에서 최대한 공격적으로 우회하는 서비스
+ * 카카오 T 택시 기사용 앱 타겟
+ */
+class AggressiveNonRootService : AccessibilityService() {
+    
+    companion object {
+        private const val TAG = "AggressiveBypass"
+        private const val KAKAO_PACKAGE = "com.kakao.driver"
+        private const val KAKAO_T_PACKAGE = "com.kakao.t"
+        
+        // 카카오 T 택시 기사용 앱의 알려진 UI 요소들
+        private val ACCEPT_BUTTON_IDS = listOf(
+            "com.kakao.driver:id/btn_accept",
+            "com.kakao.driver:id/accept_button", 
+            "com.kakao.driver:id/btn_call_accept",
+            "com.kakao.t:id/btn_accept",
+            "com.kakao.t:id/driver_accept_button"
+        )
+        
+        // 수락 버튼 텍스트 패턴
+        private val ACCEPT_TEXTS = listOf(
+            "수락", "승인", "확인", "접수", "받기",
+            "Accept", "OK", "Confirm", "배차받기"
+        )
+        
+        // 노란 버튼 색상 범위 (카카오 시그니처 컬러)
+        private val YELLOW_MIN = Color.rgb(250, 225, 0)
+        private val YELLOW_MAX = Color.rgb(255, 235, 59)
+    }
+    
+    private val serviceScope = CoroutineScope(Dispatchers.Main + SupervisorJob())
+    private var isMonitoring = false
+    private var lastClickTime = 0L
+    private val clickCooldown = 500L // 클릭 쿨다운
+    
+    override fun onServiceConnected() {
+        super.onServiceConnected()
+        Log.d(TAG, "서비스 연결됨")
+        
+        // 공격적인 설정
+        serviceInfo = serviceInfo.apply {
+            eventTypes = AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED or
+                        AccessibilityEvent.TYPE_WINDOW_CONTENT_CHANGED or
+                        AccessibilityEvent.TYPE_VIEW_CLICKED or
+                        AccessibilityEvent.TYPE_VIEW_TEXT_CHANGED or
+                        AccessibilityEvent.TYPE_NOTIFICATION_STATE_CHANGED
+            feedbackType = AccessibilityServiceInfo.FEEDBACK_GENERIC
+            flags = AccessibilityServiceInfo.FLAG_REPORT_VIEW_IDS or
+                   AccessibilityServiceInfo.FLAG_RETRIEVE_INTERACTIVE_WINDOWS or
+                   AccessibilityServiceInfo.FLAG_REQUEST_TOUCH_EXPLORATION_MODE or
+                   AccessibilityServiceInfo.FLAG_REQUEST_FILTER_KEY_EVENTS
+            notificationTimeout = 100
+        }
+        
+        startAggressiveMonitoring()
+        Toast.makeText(this, "공격적 우회 모드 활성화", Toast.LENGTH_SHORT).show()
+    }
+    
+    override fun onAccessibilityEvent(event: AccessibilityEvent?) {
+        event ?: return
+        
+        // 카카오 앱 이벤트만 처리
+        if (event.packageName != KAKAO_PACKAGE && event.packageName != KAKAO_T_PACKAGE) {
+            return
+        }
+        
+        Log.d(TAG, "이벤트 감지: ${event.eventType} from ${event.packageName}")
+        
+        // 여러 방법 동시 시도
+        serviceScope.launch {
+            try {
+                // 방법 1: 직접 노드 검색
+                findAndClickAcceptButton(rootInActiveWindow)
+                
+                // 방법 2: 이벤트 소스에서 찾기
+                event.source?.let { findAndClickAcceptButton(it) }
+                
+                // 방법 3: 텍스트 기반 검색
+                searchByText()
+                
+                // 방법 4: 좌표 기반 클릭
+                performCoordinateClick()
+                
+                // 방법 5: 제스처 주입
+                injectGesture()
+                
+            } catch (e: Exception) {
+                Log.e(TAG, "처리 중 오류", e)
+            }
+        }
+    }
+    
+    /**
+     * 공격적인 모니터링 시작
+     */
+    private fun startAggressiveMonitoring() {
+        isMonitoring = true
+        
+        // 1. 지속적인 폴링
+        serviceScope.launch {
+            while (isMonitoring) {
+                scanForAcceptButton()
+                delay(200) // 200ms마다 체크
+            }
+        }
+        
+        // 2. 윈도우 변경 감지
+        serviceScope.launch {
+            while (isMonitoring) {
+                checkWindowChanges()
+                delay(500)
+            }
+        }
+        
+        // 3. 알림 모니터링
+        serviceScope.launch {
+            while (isMonitoring) {
+                checkNotifications()
+                delay(1000)
+            }
+        }
+    }
+    
+    /**
+     * 수락 버튼 찾기 및 클릭
+     */
+    private fun findAndClickAcceptButton(node: AccessibilityNodeInfo?): Boolean {
+        node ?: return false
+        
+        try {
+            // ID로 찾기
+            ACCEPT_BUTTON_IDS.forEach { id ->
+                val buttons = node.findAccessibilityNodeInfosByViewId(id)
+                if (!buttons.isNullOrEmpty()) {
+                    buttons.forEach { button ->
+                        if (clickNode(button)) {
+                            Log.d(TAG, "✅ ID로 버튼 클릭 성공: $id")
+                            return true
+                        }
+                    }
+                }
+            }
+            
+            // 텍스트로 찾기
+            ACCEPT_TEXTS.forEach { text ->
+                val buttons = node.findAccessibilityNodeInfosByText(text)
+                if (!buttons.isNullOrEmpty()) {
+                    buttons.forEach { button ->
+                        if (clickNode(button)) {
+                            Log.d(TAG, "✅ 텍스트로 버튼 클릭 성공: $text")
+                            return true
+                        }
+                    }
+                }
+            }
+            
+            // 재귀적으로 자식 노드 검색
+            for (i in 0 until node.childCount) {
+                val child = node.getChild(i)
+                if (child != null && findAndClickAcceptButton(child)) {
+                    return true
+                }
+            }
+            
+        } catch (e: Exception) {
+            Log.e(TAG, "버튼 찾기 실패", e)
+        }
+        
+        return false
+    }
+    
+    /**
+     * 노드 클릭 시도 (여러 방법)
+     */
+    private fun clickNode(node: AccessibilityNodeInfo): Boolean {
+        if (System.currentTimeMillis() - lastClickTime < clickCooldown) {
+            return false
+        }
+        
+        // 방법 1: performAction
+        if (node.isClickable) {
+            if (node.performAction(AccessibilityNodeInfo.ACTION_CLICK)) {
+                lastClickTime = System.currentTimeMillis()
+                vibrate()
+                return true
+            }
+        }
+        
+        // 방법 2: 부모 노드 클릭
+        var parent = node.parent
+        while (parent != null) {
+            if (parent.isClickable) {
+                if (parent.performAction(AccessibilityNodeInfo.ACTION_CLICK)) {
+                    lastClickTime = System.currentTimeMillis()
+                    vibrate()
+                    return true
+                }
+            }
+            parent = parent.parent
+        }
+        
+        // 방법 3: 좌표 기반 제스처
+        val rect = Rect()
+        node.getBoundsInScreen(rect)
+        if (!rect.isEmpty) {
+            return performGestureClick(rect.centerX(), rect.centerY())
+        }
+        
+        return false
+    }
+    
+    /**
+     * 제스처로 클릭
+     */
+    private fun performGestureClick(x: Int, y: Int): Boolean {
+        val path = Path().apply {
+            moveTo(x.toFloat(), y.toFloat())
+        }
+        
+        val gesture = GestureDescription.Builder()
+            .addStroke(GestureDescription.StrokeDescription(path, 0, 50))
+            .build()
+        
+        return dispatchGesture(gesture, object : GestureResultCallback() {
+            override fun onCompleted(gestureDescription: GestureDescription?) {
+                Log.d(TAG, "✅ 제스처 클릭 성공: ($x, $y)")
+                lastClickTime = System.currentTimeMillis()
+                vibrate()
+            }
+            
+            override fun onCancelled(gestureDescription: GestureDescription?) {
+                Log.w(TAG, "제스처 클릭 취소됨")
+            }
+        }, null)
+    }
+    
+    /**
+     * 텍스트 기반 검색
+     */
+    private fun searchByText() {
+        rootInActiveWindow?.let { root ->
+            // 클래스 이름으로 버튼 찾기
+            val buttons = mutableListOf<AccessibilityNodeInfo>()
+            findNodesByClassName(root, "android.widget.Button", buttons)
+            findNodesByClassName(root, "android.view.ViewGroup", buttons)
+            findNodesByClassName(root, "android.widget.TextView", buttons)
+            
+            buttons.forEach { button ->
+                val text = button.text?.toString() ?: ""
+                val desc = button.contentDescription?.toString() ?: ""
+                
+                ACCEPT_TEXTS.forEach { acceptText ->
+                    if (text.contains(acceptText, ignoreCase = true) || 
+                        desc.contains(acceptText, ignoreCase = true)) {
+                        clickNode(button)
+                    }
+                }
+            }
+        }
+    }
+    
+    /**
+     * 클래스 이름으로 노드 찾기
+     */
+    private fun findNodesByClassName(node: AccessibilityNodeInfo, className: String, result: MutableList<AccessibilityNodeInfo>) {
+        if (node.className?.toString() == className) {
+            result.add(node)
+        }
+        
+        for (i in 0 until node.childCount) {
+            node.getChild(i)?.let {
+                findNodesByClassName(it, className, result)
+            }
+        }
+    }
+    
+    /**
+     * 좌표 기반 클릭 (화면 분석)
+     */
+    private fun performCoordinateClick() {
+        // 카카오 앱의 일반적인 수락 버튼 위치
+        val positions = listOf(
+            Pair(540, 1800),  // 하단 중앙
+            Pair(540, 1600),  // 중하단
+            Pair(540, 1400),  // 중앙
+            Pair(900, 1800),  // 우하단
+            Pair(180, 1800)   // 좌하단
+        )
+        
+        positions.forEach { (x, y) ->
+            performGestureClick(x, y)
+        }
+    }
+    
+    /**
+     * 제스처 주입 (스와이프, 탭 등)
+     */
+    private fun injectGesture() {
+        // 화면 하단에서 위로 스와이프 (숨겨진 버튼 표시)
+        val swipePath = Path().apply {
+            moveTo(540f, 2000f)
+            lineTo(540f, 1000f)
+        }
+        
+        val swipeGesture = GestureDescription.Builder()
+            .addStroke(GestureDescription.StrokeDescription(swipePath, 0, 300))
+            .build()
+        
+        dispatchGesture(swipeGesture, null, null)
+        
+        // 더블 탭
+        serviceScope.launch {
+            performGestureClick(540, 1600)
+            delay(100)
+            performGestureClick(540, 1600)
+        }
+    }
+    
+    /**
+     * 지속적인 스캔
+     */
+    private fun scanForAcceptButton() {
+        try {
+            // 현재 윈도우 가져오기
+            val windows = windows
+            windows.forEach { window ->
+                window.root?.let { root ->
+                    findAndClickAcceptButton(root)
+                }
+            }
+            
+            // 루트 노드에서도 검색
+            rootInActiveWindow?.let { 
+                findAndClickAcceptButton(it)
+            }
+        } catch (e: Exception) {
+            Log.e(TAG, "스캔 실패", e)
+        }
+    }
+    
+    /**
+     * 윈도우 변경 체크
+     */
+    private fun checkWindowChanges() {
+        try {
+            windows.forEach { window ->
+                if (window.type == AccessibilityWindowInfo.TYPE_APPLICATION) {
+                    val root = window.root
+                    if (root?.packageName == KAKAO_PACKAGE || root?.packageName == KAKAO_T_PACKAGE) {
+                        findAndClickAcceptButton(root)
+                    }
+                }
+            }
+        } catch (e: Exception) {
+            // 무시
+        }
+    }
+    
+    /**
+     * 알림 체크
+     */
+    private fun checkNotifications() {
+        // 상태바 확장하여 알림 확인
+        performGlobalAction(GLOBAL_ACTION_NOTIFICATIONS)
+        
+        serviceScope.launch {
+            delay(500)
+            // 알림 패널에서 카카오 알림 찾기
+            rootInActiveWindow?.let { root ->
+                val notifications = root.findAccessibilityNodeInfosByText("카카오")
+                notifications?.forEach { notification ->
+                    notification.performAction(AccessibilityNodeInfo.ACTION_CLICK)
+                }
+            }
+            
+            // 알림 패널 닫기
+            performGlobalAction(GLOBAL_ACTION_BACK)
+        }
+    }
+    
+    /**
+     * ADB 명령 실행 시도 (일부 기기에서 가능)
+     */
+    private fun tryAdbCommand() {
+        try {
+            val commands = listOf(
+                "input tap 540 1600",
+                "input swipe 540 2000 540 1000 300",
+                "am start -n com.kakao.driver/.MainActivity"
+            )
+            
+            commands.forEach { cmd ->
+                try {
+                    Runtime.getRuntime().exec(cmd)
+                } catch (e: Exception) {
+                    // 실패 무시
+                }
+            }
+        } catch (e: Exception) {
+            // 무시
+        }
+    }
+    
+    /**
+     * 진동 피드백
+     */
+    private fun vibrate() {
+        val vibrator = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            vibrator.vibrate(VibrationEffect.createOneShot(50, VibrationEffect.DEFAULT_AMPLITUDE))
+        } else {
+            @Suppress("DEPRECATION")
+            vibrator.vibrate(50)
+        }
+    }
+    
+    override fun onInterrupt() {
+        Log.d(TAG, "서비스 중단됨")
+        isMonitoring = false
+    }
+    
+    override fun onDestroy() {
+        super.onDestroy()
+        isMonitoring = false
+        serviceScope.cancel()
+    }
+}

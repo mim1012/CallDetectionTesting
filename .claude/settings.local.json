@@ -1,0 +1,24 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(gradlew.bat assembleDebug:*)",
+      "Bash(./gradlew:*)",
+      "Bash(gradle:*)",
+      "Bash(ls:*)",
+      "Bash(dir:*)",
+      "Bash(.gradlew.bat assembleDebug)",
+      "Bash(cmd:*)",
+      "Bash(D:ProjectKaKao Venticalgradlew.bat assembleDebug)",
+      "Bash(powershell:*)",
+      "Bash(D:)",
+      "Bash(\"D:\\Project\\KaKao Ventical\\gradlew.bat\" assembleDebug)",
+      "Bash(gemini:*)",
+      "Bash(.gradlew.bat clean assembleDebug)",
+      "Bash(adb:*)",
+      "Bash(npm install)",
+      "Bash(node:*)",
+      "Bash(taskkill:*)"
+    ],
+    "deny": []
+  }
+}

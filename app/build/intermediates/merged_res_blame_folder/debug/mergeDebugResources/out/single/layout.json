@@ -1,0 +1,22 @@
+[
+    {
+        "merged": "C:\\Users\\PC_1M\\.gradle\\daemon\\8.10\\com.kakao.taxi.test.app-mergeDebugResources-35:\\layout\\layout_floating_control.xml",
+        "source": "C:\\Users\\PC_1M\\.gradle\\daemon\\8.10\\com.kakao.taxi.test.app-main-38:\\layout\\layout_floating_control.xml"
+    },
+    {
+        "merged": "com.kakao.taxi.test.app-mergeDebugResources-35:/layout/activity_main.xml",
+        "source": "com.kakao.taxi.test.app-main-38:/layout/activity_main.xml"
+    },
+    {
+        "merged": "C:\\Users\\PC_1M\\.gradle\\daemon\\8.10\\com.kakao.taxi.test.app-mergeDebugResources-35:\\layout\\activity_log_viewer.xml",
+        "source": "C:\\Users\\PC_1M\\.gradle\\daemon\\8.10\\com.kakao.taxi.test.app-main-38:\\layout\\activity_log_viewer.xml"
+    },
+    {
+        "merged": "com.kakao.taxi.test.app-mergeDebugResources-35:/layout/activity_filter_settings.xml",
+        "source": "com.kakao.taxi.test.app-main-38:/layout/activity_filter_settings.xml"
+    },
+    {
+        "merged": "C:\\Users\\PC_1M\\.gradle\\daemon\\8.10\\com.kakao.taxi.test.app-mergeDebugResources-35:\\layout\\activity_main.xml",
+        "source": "C:\\Users\\PC_1M\\.gradle\\daemon\\8.10\\com.kakao.taxi.test.app-main-38:\\layout\\activity_main.xml"
+    }
+]

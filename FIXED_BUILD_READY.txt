@@ -1,0 +1,26 @@
+================================
+  빌드 오류 수정 완료!
+================================
+
+수정된 내용:
+1. ✅ MainActivity.kt - MediaProjection import 추가
+2. ✅ UltimateBypassService.kt - putExtra 타입 오류 수정
+   - MediaProjection을 static 변수로 전달하도록 변경
+
+================================
+  다시 빌드하기
+================================
+
+1. 명령 프롬프트에서:
+   cd "D:\Project\KaKao Ventical"
+   build_apk.bat
+
+2. 또는 파일 탐색기에서:
+   build_apk.bat 더블클릭
+
+================================
+
+빌드가 성공하면:
+- APK 위치: app\build\outputs\apk\debug\app-debug.apk
+
+================================

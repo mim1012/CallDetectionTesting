@@ -1,0 +1,42 @@
+[
+    {
+        "merged": "com.kakao.taxi.test.app-debug-36:/layout_activity_main.xml.flat",
+        "source": "com.kakao.taxi.test.app-main-38:/layout/activity_main.xml"
+    },
+    {
+        "merged": "C:\\Users\\PC_1M\\.gradle\\daemon\\8.10\\com.kakao.taxi.test.app-debug-36:\\layout_activity_main.xml.flat",
+        "source": "C:\\Users\\PC_1M\\.gradle\\daemon\\8.10\\com.kakao.taxi.test.app-main-38:\\layout\\activity_main.xml"
+    },
+    {
+        "merged": "C:\\Users\\PC_1M\\.gradle\\daemon\\8.10\\com.kakao.taxi.test.app-debug-36:\\layout_activity_log_viewer.xml.flat",
+        "source": "C:\\Users\\PC_1M\\.gradle\\daemon\\8.10\\com.kakao.taxi.test.app-main-38:\\layout\\activity_log_viewer.xml"
+    },
+    {
+        "merged": "C:\\Users\\PC_1M\\.gradle\\daemon\\8.10\\com.kakao.taxi.test.app-debug-36:\\drawable_circle_background.xml.flat",
+        "source": "C:\\Users\\PC_1M\\.gradle\\daemon\\8.10\\com.kakao.taxi.test.app-main-38:\\drawable\\circle_background.xml"
+    },
+    {
+        "merged": "C:\\Users\\PC_1M\\.gradle\\daemon\\8.10\\com.kakao.taxi.test.app-debug-36:\\drawable_rounded_background.xml.flat",
+        "source": "C:\\Users\\PC_1M\\.gradle\\daemon\\8.10\\com.kakao.taxi.test.app-main-38:\\drawable\\rounded_background.xml"
+    },
+    {
+        "merged": "com.kakao.taxi.test.app-debug-36:/layout_activity_filter_settings.xml.flat",
+        "source": "com.kakao.taxi.test.app-main-38:/layout/activity_filter_settings.xml"
+    },
+    {
+        "merged": "C:\\Users\\PC_1M\\.gradle\\daemon\\8.10\\com.kakao.taxi.test.app-debug-36:\\xml_accessibility_service_config.xml.flat",
+        "source": "C:\\Users\\PC_1M\\.gradle\\daemon\\8.10\\com.kakao.taxi.test.app-main-38:\\xml\\accessibility_service_config.xml"
+    },
+    {
+        "merged": "C:\\Users\\PC_1M\\.gradle\\daemon\\8.10\\com.kakao.taxi.test.app-debug-36:\\drawable_button_background.xml.flat",
+        "source": "C:\\Users\\PC_1M\\.gradle\\daemon\\8.10\\com.kakao.taxi.test.app-main-38:\\drawable\\button_background.xml"
+    },
+    {
+        "merged": "C:\\Users\\PC_1M\\.gradle\\daemon\\8.10\\com.kakao.taxi.test.app-debug-36:\\layout_layout_floating_control.xml.flat",
+        "source": "C:\\Users\\PC_1M\\.gradle\\daemon\\8.10\\com.kakao.taxi.test.app-main-38:\\layout\\layout_floating_control.xml"
+    },
+    {
+        "merged": "com.kakao.taxi.test.app-debug-36:/xml_aggressive_accessibility_config.xml.flat",
+        "source": "com.kakao.taxi.test.app-main-38:/xml/aggressive_accessibility_config.xml"
+    }
+]

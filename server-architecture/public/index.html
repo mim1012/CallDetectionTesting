@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>카카오택시 원격 제어 대시보드</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #fff;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .stat-card {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        
+        .stat-value {
+            font-size: 2em;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+        
+        .stat-label {
+            font-size: 0.9em;
+            opacity: 0.8;
+        }
+        
+        .drivers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 20px;
+        }
+        
+        .driver-card {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 20px;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        
+        .driver-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .driver-id {
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+        
+        .status-badge {
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.8em;
+        }
+        
+        .status-online {
+            background: #4caf50;
+        }
+        
+        .status-offline {
+            background: #f44336;
+        }
+        
+        .driver-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+        }
+        
+        .driver-stat {
+            background: rgba(0,0,0,0.2);
+            padding: 10px;
+            border-radius: 8px;
+        }
+        
+        .screenshot-preview {
+            width: 100%;
+            height: 200px;
+            background: rgba(0,0,0,0.3);
+            border-radius: 8px;
+            margin-top: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .screenshot-preview img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .config-panel {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 30px;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        
+        .config-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .config-item {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .config-item label {
+            margin-bottom: 5px;
+            font-size: 0.9em;
+            opacity: 0.8;
+        }
+        
+        .config-item input {
+            padding: 8px;
+            border-radius: 5px;
+            border: none;
+            background: rgba(255,255,255,0.2);
+            color: white;
+        }
+        
+        .config-item input::placeholder {
+            color: rgba(255,255,255,0.5);
+        }
+        
+        button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        
+        button:hover {
+            opacity: 0.9;
+        }
+        
+        .no-drivers {
+            text-align: center;
+            padding: 50px;
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🚕 카카오택시 원격 제어 대시보드</h1>
+        
+        <!-- 전체 통계 -->
+        <div class="stats-grid" id="totalStats">
+            <div class="stat-card">
+                <div class="stat-label">연결된 드라이버</div>
+                <div class="stat-value" id="totalDrivers">0</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">총 콜 수</div>
+                <div class="stat-value" id="totalCalls">0</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">수락된 콜</div>
+                <div class="stat-value" id="acceptedCalls">0</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">거절된 콜</div>
+                <div class="stat-value" id="rejectedCalls">0</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-label">총 수익</div>
+                <div class="stat-value" id="totalEarnings">0원</div>
+            </div>
+        </div>
+        
+        <!-- 설정 패널 -->
+        <div class="config-panel">
+            <h2>⚙️ 필터 설정</h2>
+            <div class="config-grid">
+                <div class="config-item">
+                    <label>최소 금액 (원)</label>
+                    <input type="number" id="minAmount" value="5000" placeholder="5000">
+                </div>
+                <div class="config-item">
+                    <label>최대 거리 (km)</label>
+                    <input type="number" id="maxDistance" value="3.0" step="0.1" placeholder="3.0">
+                </div>
+                <div class="config-item">
+                    <label>선호 지역 (쉼표로 구분)</label>
+                    <input type="text" id="preferredAreas" value="강남,서초,송파" placeholder="강남,서초,송파">
+                </div>
+            </div>
+            <button onclick="updateConfig()">설정 업데이트</button>
+        </div>
+        
+        <!-- 드라이버 목록 -->
+        <h2 style="margin-bottom: 20px;">📱 드라이버 목록</h2>
+        <div class="drivers-grid" id="driversGrid">
+            <div class="no-drivers">
+                <p class="pulse">드라이버 연결 대기중...</p>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        let drivers = [];
+        
+        // 주기적으로 데이터 업데이트
+        setInterval(updateDashboard, 1000);
+        
+        async function updateDashboard() {
+            try {
+                // 드라이버 목록 가져오기
+                const driversResponse = await fetch('/api/drivers');
+                drivers = await driversResponse.json();
+                
+                // 전체 통계 가져오기
+                const statsResponse = await fetch('/api/stats');
+                const stats = await statsResponse.json();
+                
+                // UI 업데이트
+                updateStats(stats);
+                updateDriversGrid(drivers);
+            } catch (error) {
+                console.error('대시보드 업데이트 실패:', error);
+            }
+        }
+        
+        function updateStats(stats) {
+            document.getElementById('totalDrivers').textContent = stats.totalDrivers;
+            document.getElementById('totalCalls').textContent = stats.totalCalls;
+            document.getElementById('acceptedCalls').textContent = stats.acceptedCalls;
+            document.getElementById('rejectedCalls').textContent = stats.rejectedCalls;
+            document.getElementById('totalEarnings').textContent = stats.totalEarnings.toLocaleString() + '원';
+        }
+        
+        function updateDriversGrid(drivers) {
+            const grid = document.getElementById('driversGrid');
+            
+            if (drivers.length === 0) {
+                grid.innerHTML = `
+                    <div class="no-drivers">
+                        <p class="pulse">드라이버 연결 대기중...</p>
+                    </div>
+                `;
+                return;
+            }
+            
+            grid.innerHTML = drivers.map(driver => `
+                <div class="driver-card">
+                    <div class="driver-header">
+                        <span class="driver-id">${driver.id}</span>
+                        <span class="status-badge ${driver.connected ? 'status-online' : 'status-offline'}">
+                            ${driver.connected ? '온라인' : '오프라인'}
+                        </span>
+                    </div>
+                    <div class="driver-stats">
+                        <div class="driver-stat">
+                            <div>총 콜: ${driver.stats.totalCalls}</div>
+                        </div>
+                        <div class="driver-stat">
+                            <div>수락: ${driver.stats.acceptedCalls}</div>
+                        </div>
+                        <div class="driver-stat">
+                            <div>거절: ${driver.stats.rejectedCalls}</div>
+                        </div>
+                        <div class="driver-stat">
+                            <div>수익: ${driver.stats.earnings.toLocaleString()}원</div>
+                        </div>
+                    </div>
+                    ${driver.stats.lastDetection ? `
+                        <div class="driver-stat" style="margin-top: 10px; grid-column: span 2;">
+                            <div>마지막 감지: ${new Date(driver.stats.lastDetection.time).toLocaleTimeString()}</div>
+                            <div>위치: (${driver.stats.lastDetection.position.x}, ${driver.stats.lastDetection.position.y})</div>
+                        </div>
+                    ` : ''}
+                    <div class="screenshot-preview" onclick="viewScreenshot('${driver.id}')">
+                        <img src="/api/screenshot/${driver.id}?t=${Date.now()}" 
+                             onerror="this.style.display='none'" 
+                             onload="this.style.display='block'">
+                        <span style="position: absolute; ${driver.connected ? 'display:none;' : ''}">
+                            스크린샷 없음
+                        </span>
+                    </div>
+                    <button onclick="sendTestClick('${driver.id}')">테스트 클릭</button>
+                </div>
+            `).join('');
+        }
+        
+        async function updateConfig() {
+            const config = {
+                minAmount: parseInt(document.getElementById('minAmount').value),
+                maxDistance: parseFloat(document.getElementById('maxDistance').value),
+                preferredAreas: document.getElementById('preferredAreas').value.split(',').map(s => s.trim())
+            };
+            
+            try {
+                const response = await fetch('/api/config', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(config)
+                });
+                
+                if (response.ok) {
+                    alert('설정이 업데이트되었습니다!');
+                }
+            } catch (error) {
+                alert('설정 업데이트 실패: ' + error.message);
+            }
+        }
+        
+        async function sendTestClick(driverId) {
+            try {
+                const response = await fetch('/api/command', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        driverId: driverId,
+                        command: {
+                            action: 'click',
+                            x: 540,  // 화면 중앙
+                            y: 1200  // 버튼 예상 위치
+                        }
+                    })
+                });
+                
+                if (response.ok) {
+                    console.log('테스트 클릭 전송됨');
+                }
+            } catch (error) {
+                console.error('테스트 클릭 실패:', error);
+            }
+        }
+        
+        function viewScreenshot(driverId) {
+            window.open(`/api/screenshot/${driverId}`, '_blank');
+        }
+        
+        // 초기 로드
+        updateDashboard();
+    </script>
+</body>
+</html>

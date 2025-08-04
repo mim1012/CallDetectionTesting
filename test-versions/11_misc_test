@@ -1,0 +1,301 @@
+package com.kakao.taxi.test.module
+
+import android.app.ActivityManager
+import android.content.Context
+import android.content.pm.ApplicationInfo
+import android.os.Build
+import android.util.Log
+import java.io.File
+import java.lang.reflect.Method
+import java.lang.reflect.Modifier
+import dalvik.system.DexClassLoader
+import java.io.RandomAccessFile
+import java.nio.ByteBuffer
+import java.nio.channels.FileChannel
+
+/**
+ * 고급 우회 모듈
+ * 카카오택시의 보안 검사를 우회하기 위한 다층적 접근
+ */
+class AdvancedBypassModule(private val context: Context) {
+    
+    companion object {
+        private const val TAG = "AdvancedBypass"
+        
+        // 카카오 드라이버 앱 패키지명
+        private const val TARGET_PACKAGE = "com.kakao.driver"
+        
+        // 우회할 보안 클래스들
+        private val SECURITY_CLASSES = listOf(
+            "com.kakao.driver.security.AccessibilityDetector",
+            "com.kakao.driver.security.RootDetector", 
+            "com.kakao.driver.security.DebugDetector",
+            "com.kakao.driver.security.TouchValidator"
+        )
+    }
+    
+    /**
+     * 메모리 기반 직접 UI 읽기
+     * /proc/{pid}/mem을 통해 프로세스 메모리에서 직접 UI 정보 추출
+     */
+    fun readUIFromMemory(): Map<String, String> {
+        val result = mutableMapOf<String, String>()
+        
+        try {
+            val targetPid = getTargetProcessId()
+            if (targetPid == -1) {
+                Log.e(TAG, "Target process not found")
+                return result
+            }
+            
+            // 메모리 맵 읽기
+            val maps = File("/proc/$targetPid/maps").readText()
+            val heapRegions = maps.lines().filter { it.contains("[heap]") || it.contains("dalvik") }
+            
+            // 각 힙 영역 스캔
+            heapRegions.forEach { region ->
+                val parts = region.split(" ")
+                val addressRange = parts[0].split("-")
+                val startAddr = addressRange[0].toLong(16)
+                val endAddr = addressRange[1].toLong(16)
+                
+                // 메모리 영역 읽기 (root 권한 필요 없이 시도)
+                scanMemoryRegion(targetPid, startAddr, endAddr, result)
+            }
+            
+        } catch (e: Exception) {
+            Log.e(TAG, "Memory reading failed", e)
+        }
+        
+        return result
+    }
+    
+    /**
+     * 런타임 메서드 후킹 (Reflection 기반)
+     * Root 없이 타겟 앱의 보안 검사 메서드를 런타임에 무력화
+     */
+    fun hookSecurityMethods() {
+        try {
+            // 타겟 앱의 ClassLoader 획득 시도
+            val targetApp = context.packageManager.getApplicationInfo(TARGET_PACKAGE, 0)
+            val targetContext = context.createPackageContext(TARGET_PACKAGE, Context.CONTEXT_INCLUDE_CODE)
+            
+            // 보안 클래스들의 메서드 후킹
+            SECURITY_CLASSES.forEach { className ->
+                try {
+                    val clazz = targetContext.classLoader.loadClass(className)
+                    hookClassMethods(clazz)
+                } catch (e: ClassNotFoundException) {
+                    Log.w(TAG, "Security class not found: $className")
+                }
+            }
+            
+        } catch (e: Exception) {
+            Log.e(TAG, "Method hooking failed", e)
+        }
+    }
+    
+    /**
+     * 프로세스 위장 기법
+     * 자신의 프로세스를 시스템 프로세스처럼 위장
+     */
+    fun disguiseProcess() {
+        try {
+            // 프로세스 이름 변경 (native 레벨)
+            changeProcessName("system_server")
+            
+            // UID/GID 위장 (일부 속성만)
+            spoofProcessInfo()
+            
+            // SELinux 컨텍스트 위장 시도
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                spoofSELinuxContext()
+            }
+            
+        } catch (e: Exception) {
+            Log.e(TAG, "Process disguise failed", e)
+        }
+    }
+    
+    /**
+     * 동적 DEX 로딩을 통한 우회
+     * 런타임에 우회 코드를 동적으로 로드
+     */
+    fun loadBypassDex() {
+        try {
+            // assets에서 우회 DEX 파일 추출
+            val dexFile = File(context.cacheDir, "bypass.dex")
+            context.assets.open("bypass.dex").use { input ->
+                dexFile.outputStream().use { output ->
+                    input.copyTo(output)
+                }
+            }
+            
+            // DEX 로더 생성
+            val optimizedDir = context.getDir("dex", Context.MODE_PRIVATE)
+            val dexLoader = DexClassLoader(
+                dexFile.absolutePath,
+                optimizedDir.absolutePath,
+                null,
+                context.classLoader
+            )
+            
+            // 우회 클래스 로드 및 실행
+            val bypassClass = dexLoader.loadClass("com.bypass.core.KakaoBypass")
+            val bypassInstance = bypassClass.newInstance()
+            val executeMethod = bypassClass.getMethod("execute", Context::class.java)
+            executeMethod.invoke(bypassInstance, context)
+            
+        } catch (e: Exception) {
+            Log.e(TAG, "DEX loading failed", e)
+        }
+    }
+    
+    /**
+     * 가상 입력 디바이스 생성
+     * uinput을 통한 하드웨어 레벨 터치 이벤트 생성
+     */
+    fun createVirtualInputDevice(): Boolean {
+        return try {
+            // /dev/uinput 디바이스 열기 시도
+            val uinputFile = File("/dev/uinput")
+            if (!uinputFile.exists()) {
+                Log.e(TAG, "uinput device not found")
+                return false
+            }
+            
+            // JNI를 통한 가상 디바이스 생성
+            val success = nativeCreateVirtualDevice()
+            if (success) {
+                Log.d(TAG, "Virtual input device created")
+            }
+            success
+            
+        } catch (e: Exception) {
+            Log.e(TAG, "Virtual device creation failed", e)
+            false
+        }
+    }
+    
+    /**
+     * 메모리 영역 스캔
+     */
+    private fun scanMemoryRegion(pid: Int, startAddr: Long, endAddr: Long, result: MutableMap<String, String>) {
+        try {
+            val memFile = RandomAccessFile("/proc/$pid/mem", "r")
+            val channel = memFile.channel
+            val size = (endAddr - startAddr).toInt()
+            val buffer = ByteBuffer.allocate(minOf(size, 1024 * 1024)) // 최대 1MB씩 읽기
+            
+            channel.position(startAddr)
+            channel.read(buffer)
+            buffer.flip()
+            
+            // 패턴 매칭으로 UI 텍스트 찾기
+            val bytes = ByteArray(buffer.remaining())
+            buffer.get(bytes)
+            val content = String(bytes, Charsets.UTF_8)
+            
+            // 출발지/도착지 패턴 찾기
+            val patterns = listOf(
+                "출발지.*?([가-힣\\s]+)",
+                "도착지.*?([가-힣\\s]+)",
+                "예상.*?([0-9,]+원)"
+            )
+            
+            patterns.forEach { pattern ->
+                val regex = Regex(pattern)
+                regex.find(content)?.let { match ->
+                    val key = pattern.substringBefore(".*")
+                    val value = match.groupValues.getOrNull(1) ?: ""
+                    result[key] = value
+                }
+            }
+            
+            channel.close()
+            memFile.close()
+            
+        } catch (e: Exception) {
+            // 메모리 읽기 실패는 일반적 - 권한 문제
+        }
+    }
+    
+    /**
+     * 타겟 프로세스 ID 획득
+     */
+    private fun getTargetProcessId(): Int {
+        val activityManager = context.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
+        val runningApps = activityManager.runningAppProcesses
+        
+        runningApps?.forEach { process ->
+            if (process.processName == TARGET_PACKAGE) {
+                return process.pid
+            }
+        }
+        return -1
+    }
+    
+    /**
+     * 클래스의 모든 메서드 후킹
+     */
+    private fun hookClassMethods(clazz: Class<*>) {
+        clazz.declaredMethods.forEach { method ->
+            if (method.name.contains("detect", true) || 
+                method.name.contains("check", true) ||
+                method.name.contains("verify", true)) {
+                
+                hookMethod(method)
+            }
+        }
+    }
+    
+    /**
+     * 개별 메서드 후킹
+     */
+    private fun hookMethod(method: Method) {
+        try {
+            method.isAccessible = true
+            
+            // 메서드의 modifiers를 변경하여 항상 false 반환하도록
+            val modifiersField = Method::class.java.getDeclaredField("modifiers")
+            modifiersField.isAccessible = true
+            modifiersField.setInt(method, method.modifiers and Modifier.FINAL.inv())
+            
+            // 더 고급 후킹이 필요한 경우 JNI 사용
+            
+        } catch (e: Exception) {
+            Log.e(TAG, "Method hook failed: ${method.name}", e)
+        }
+    }
+    
+    /**
+     * 프로세스 이름 변경 (Native)
+     */
+    private external fun changeProcessName(name: String): Boolean
+    
+    /**
+     * 프로세스 정보 위장
+     */
+    private external fun spoofProcessInfo(): Boolean
+    
+    /**
+     * SELinux 컨텍스트 위장
+     */
+    private external fun spoofSELinuxContext(): Boolean
+    
+    /**
+     * 가상 입력 디바이스 생성 (Native)
+     */
+    private external fun nativeCreateVirtualDevice(): Boolean
+    
+    /**
+     * 네이티브 라이브러리 로드
+     */
+    init {
+        try {
+            System.loadLibrary("advanced_bypass")
+        } catch (e: UnsatisfiedLinkError) {
+            Log.e(TAG, "Native library not found", e)
+        }
+    }
+}

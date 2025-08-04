@@ -1,0 +1,6 @@
+com.kakao.taxi.test.test.app-androidTest-0 D:\Project\KaKao Ventical\app\build\generated\res\resValues\androidTest\debug
+com.kakao.taxi.test.test.app-mergeDebugAndroidTestResources-1 D:\Project\KaKao Ventical\app\build\intermediates\incremental\debugAndroidTest\mergeDebugAndroidTestResources\merged.dir
+com.kakao.taxi.test.test.app-mergeDebugAndroidTestResources-2 D:\Project\KaKao Ventical\app\build\intermediates\incremental\debugAndroidTest\mergeDebugAndroidTestResources\stripped.dir
+com.kakao.taxi.test.test.app-debugAndroidTest-3 D:\Project\KaKao Ventical\app\build\intermediates\merged_res\debugAndroidTest\mergeDebugAndroidTestResources
+com.kakao.taxi.test.test.app-core-1.5.0-4 D:\caches\8.10\transforms\c4ca811bde804c222cb5baa8aa69808a\transformed\core-1.5.0\res
+com.kakao.taxi.test.test.app-annotation-experimental-1.3.0-5 D:\caches\8.10\transforms\e0ff3b8cfccab78153fb1eff799c3aa6\transformed\annotation-experimental-1.3.0\res

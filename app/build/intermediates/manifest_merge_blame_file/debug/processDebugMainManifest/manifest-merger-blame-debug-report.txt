@@ -1,0 +1,510 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.kakao.taxi.test"
+4    android:versionCode="1"
+5    android:versionName="1.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="24"
+9        android:targetSdkVersion="33" />
+10
+11    <!-- 권한 설정 -->
+12    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+12-->D:\Project\KaKao Ventical\app\src\main\AndroidManifest.xml:6:5-78
+12-->D:\Project\KaKao Ventical\app\src\main\AndroidManifest.xml:6:22-75
+13    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+13-->D:\Project\KaKao Ventical\app\src\main\AndroidManifest.xml:7:5-77
+13-->D:\Project\KaKao Ventical\app\src\main\AndroidManifest.xml:7:22-74
+14    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MEDIA_PROJECTION" />
+14-->D:\Project\KaKao Ventical\app\src\main\AndroidManifest.xml:8:5-94
+14-->D:\Project\KaKao Ventical\app\src\main\AndroidManifest.xml:8:22-91
+15    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+15-->D:\Project\KaKao Ventical\app\src\main\AndroidManifest.xml:9:5-81
+15-->D:\Project\KaKao Ventical\app\src\main\AndroidManifest.xml:9:22-78
+16    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+16-->D:\Project\KaKao Ventical\app\src\main\AndroidManifest.xml:10:5-80
+16-->D:\Project\KaKao Ventical\app\src\main\AndroidManifest.xml:10:22-77
+17    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+17-->D:\Project\KaKao Ventical\app\src\main\AndroidManifest.xml:11:5-77
+17-->D:\Project\KaKao Ventical\app\src\main\AndroidManifest.xml:11:22-74
+18    <uses-permission android:name="android.permission.GET_TASKS" />
+18-->D:\Project\KaKao Ventical\app\src\main\AndroidManifest.xml:12:5-68
+18-->D:\Project\KaKao Ventical\app\src\main\AndroidManifest.xml:12:22-65
+19
+20    <!-- Android 14 MediaProjection 추가 권한 -->
+21    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_TYPE_MEDIA_PROJECTION" />
+21-->D:\Project\KaKao Ventical\app\src\main\AndroidManifest.xml:15:5-99
+21-->D:\Project\KaKao Ventical\app\src\main\AndroidManifest.xml:15:22-96
+22    <uses-permission android:name="android.permission.PACKAGE_USAGE_STATS" />
+22-->D:\Project\KaKao Ventical\app\src\main\AndroidManifest.xml:16:5-114
+22-->D:\Project\KaKao Ventical\app\src\main\AndroidManifest.xml:16:22-75
+23
+24    <!-- Shizuku 권한 -->
+25    <uses-permission android:name="moe.shizuku.manager.permission.API_V23" />
+25-->D:\Project\KaKao Ventical\app\src\main\AndroidManifest.xml:19:5-78
+25-->D:\Project\KaKao Ventical\app\src\main\AndroidManifest.xml:19:22-75
+26
+27    <permission
+27-->[androidx.core:core:1.12.0] C:\Users\PC_1M\.gradle\caches\8.10\transforms\2844b743be62bb65b978907dade3c02a\transformed\core-1.12.0\AndroidManifest.xml:22:5-24:47
+28        android:name="com.kakao.taxi.test.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+28-->[androidx.core:core:1.12.0] C:\Users\PC_1M\.gradle\caches\8.10\transforms\2844b743be62bb65b978907dade3c02a\transformed\core-1.12.0\AndroidManifest.xml:23:9-81
+29        android:protectionLevel="signature" />
+29-->[androidx.core:core:1.12.0] C:\Users\PC_1M\.gradle\caches\8.10\transforms\2844b743be62bb65b978907dade3c02a\transformed\core-1.12.0\AndroidManifest.xml:24:9-44
+30
+31    <uses-permission android:name="com.kakao.taxi.test.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" /> <!-- Although the *SdkVersion is captured in gradle build files, this is required for non gradle builds -->
+31-->[androidx.core:core:1.12.0] C:\Users\PC_1M\.gradle\caches\8.10\transforms\2844b743be62bb65b978907dade3c02a\transformed\core-1.12.0\AndroidManifest.xml:26:5-97
+31-->[androidx.core:core:1.12.0] C:\Users\PC_1M\.gradle\caches\8.10\transforms\2844b743be62bb65b978907dade3c02a\transformed\core-1.12.0\AndroidManifest.xml:26:22-94
+32    <!-- <uses-sdk android:minSdkVersion="14"/> -->
+33    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+33-->[com.google.android.datatransport:transport-backend-cct:2.3.3] C:\Users\PC_1M\.gradle\caches\8.10\transforms\c030b3eea51ad067caa5c1452d5a4518\transformed\transport-backend-cct-2.3.3\AndroidManifest.xml:25:5-79
+33-->[com.google.android.datatransport:transport-backend-cct:2.3.3] C:\Users\PC_1M\.gradle\caches\8.10\transforms\c030b3eea51ad067caa5c1452d5a4518\transformed\transport-backend-cct-2.3.3\AndroidManifest.xml:25:22-76
+34    <uses-permission android:name="android.permission.INTERNET" />
+34-->[com.google.android.datatransport:transport-backend-cct:2.3.3] C:\Users\PC_1M\.gradle\caches\8.10\transforms\c030b3eea51ad067caa5c1452d5a4518\transformed\transport-backend-cct-2.3.3\AndroidManifest.xml:26:5-67
+34-->[com.google.android.datatransport:transport-backend-cct:2.3.3] C:\Users\PC_1M\.gradle\caches\8.10\transforms\c030b3eea51ad067caa5c1452d5a4518\transformed\transport-backend-cct-2.3.3\AndroidManifest.xml:26:22-64
+35
+36    <application
+36-->D:\Project\KaKao Ventical\app\src\main\AndroidManifest.xml:21:5-184:19
+37        android:allowBackup="true"
+37-->D:\Project\KaKao Ventical\app\src\main\AndroidManifest.xml:22:9-35
+38        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+38-->[androidx.core:core:1.12.0] C:\Users\PC_1M\.gradle\caches\8.10\transforms\2844b743be62bb65b978907dade3c02a\transformed\core-1.12.0\AndroidManifest.xml:28:18-86
+39        android:debuggable="true"
+40        android:extractNativeLibs="true"
+40-->D:\Project\KaKao Ventical\app\src\main\AndroidManifest.xml:28:9-41
+41        android:icon="@android:drawable/ic_menu_compass"
+41-->D:\Project\KaKao Ventical\app\src\main\AndroidManifest.xml:23:9-57
+42        android:label="@string/app_name"
+42-->D:\Project\KaKao Ventical\app\src\main\AndroidManifest.xml:24:9-41
+43        android:requestLegacyExternalStorage="true"
+43-->D:\Project\KaKao Ventical\app\src\main\AndroidManifest.xml:29:9-52
+44        android:roundIcon="@android:drawable/ic_menu_compass"
+44-->D:\Project\KaKao Ventical\app\src\main\AndroidManifest.xml:25:9-62
+45        android:supportsRtl="true"
+45-->D:\Project\KaKao Ventical\app\src\main\AndroidManifest.xml:26:9-35
+46        android:theme="@style/Theme.AppCompat.Light.DarkActionBar" >
+46-->D:\Project\KaKao Ventical\app\src\main\AndroidManifest.xml:27:9-67
+47
+48        <!-- 메인 액티비티 -->
+49        <activity
+49-->D:\Project\KaKao Ventical\app\src\main\AndroidManifest.xml:33:9-41:20
+50            android:name="com.kakao.taxi.test.MainActivity"
+50-->D:\Project\KaKao Ventical\app\src\main\AndroidManifest.xml:34:13-41
+51            android:exported="true"
+51-->D:\Project\KaKao Ventical\app\src\main\AndroidManifest.xml:35:13-36
+52            android:launchMode="singleTask" >
+52-->D:\Project\KaKao Ventical\app\src\main\AndroidManifest.xml:36:13-44
+53            <intent-filter>
+53-->D:\Project\KaKao Ventical\app\src\main\AndroidManifest.xml:37:13-40:29
+54                <action android:name="android.intent.action.MAIN" />
+54-->D:\Project\KaKao Ventical\app\src\main\AndroidManifest.xml:38:17-69
+54-->D:\Project\KaKao Ventical\app\src\main\AndroidManifest.xml:38:25-66
+55
+56                <category android:name="android.intent.category.LAUNCHER" />
+56-->D:\Project\KaKao Ventical\app\src\main\AndroidManifest.xml:39:17-77
+56-->D:\Project\KaKao Ventical\app\src\main\AndroidManifest.xml:39:27-74
+57            </intent-filter>
+58        </activity>
+59
+60        <!-- Mock 콜 화면 액티비티 -->
+61        <activity
+61-->D:\Project\KaKao Ventical\app\src\main\AndroidManifest.xml:44:9-47:72
+62            android:name="com.kakao.taxi.test.MockCallActivity"
+62-->D:\Project\KaKao Ventical\app\src\main\AndroidManifest.xml:45:13-45
+63            android:exported="false"
+63-->D:\Project\KaKao Ventical\app\src\main\AndroidManifest.xml:46:13-37
+64            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+64-->D:\Project\KaKao Ventical\app\src\main\AndroidManifest.xml:47:13-69
+65
+66        <!-- 로그 뷰어 액티비티 -->
+67        <activity
+67-->D:\Project\KaKao Ventical\app\src\main\AndroidManifest.xml:50:9-53:38
+68            android:name="com.kakao.taxi.test.LogViewerActivity"
+68-->D:\Project\KaKao Ventical\app\src\main\AndroidManifest.xml:51:13-46
+69            android:exported="false"
+69-->D:\Project\KaKao Ventical\app\src\main\AndroidManifest.xml:52:13-37
+70            android:label="실시간 로그" />
+70-->D:\Project\KaKao Ventical\app\src\main\AndroidManifest.xml:53:13-35
+71
+72        <!-- MediaProjection 서비스 -->
+73        <service
+73-->D:\Project\KaKao Ventical\app\src\main\AndroidManifest.xml:56:9-60:63
+74            android:name="com.kakao.taxi.test.service.ScreenCaptureService"
+74-->D:\Project\KaKao Ventical\app\src\main\AndroidManifest.xml:57:13-57
+75            android:enabled="true"
+75-->D:\Project\KaKao Ventical\app\src\main\AndroidManifest.xml:58:13-35
+76            android:exported="false"
+76-->D:\Project\KaKao Ventical\app\src\main\AndroidManifest.xml:59:13-37
+77            android:foregroundServiceType="mediaProjection" />
+77-->D:\Project\KaKao Ventical\app\src\main\AndroidManifest.xml:60:13-60
+78
+79        <!-- 오버레이 서비스 -->
+80        <service
+80-->D:\Project\KaKao Ventical\app\src\main\AndroidManifest.xml:63:9-66:40
+81            android:name="com.kakao.taxi.test.service.OverlayService"
+81-->D:\Project\KaKao Ventical\app\src\main\AndroidManifest.xml:64:13-51
+82            android:enabled="true"
+82-->D:\Project\KaKao Ventical\app\src\main\AndroidManifest.xml:65:13-35
+83            android:exported="false" />
+83-->D:\Project\KaKao Ventical\app\src\main\AndroidManifest.xml:66:13-37
+84
+85        <!-- Shizuku provider -->
+86        <provider
+87            android:name="rikka.shizuku.ShizukuProvider"
+87-->D:\Project\KaKao Ventical\app\src\main\AndroidManifest.xml:70:13-57
+88            android:authorities="com.kakao.taxi.test.shizuku"
+88-->D:\Project\KaKao Ventical\app\src\main\AndroidManifest.xml:71:13-59
+89            android:enabled="true"
+89-->D:\Project\KaKao Ventical\app\src\main\AndroidManifest.xml:72:13-35
+90            android:exported="true"
+90-->D:\Project\KaKao Ventical\app\src\main\AndroidManifest.xml:73:13-36
+91            android:multiprocess="false"
+91-->D:\Project\KaKao Ventical\app\src\main\AndroidManifest.xml:74:13-41
+92            android:permission="android.permission.INTERACT_ACROSS_USERS_FULL" />
+92-->D:\Project\KaKao Ventical\app\src\main\AndroidManifest.xml:75:13-79
+93
+94        <!-- Floating Control Service -->
+95        <service
+95-->D:\Project\KaKao Ventical\app\src\main\AndroidManifest.xml:78:9-81:40
+96            android:name="com.kakao.taxi.test.service.FloatingControlService"
+96-->D:\Project\KaKao Ventical\app\src\main\AndroidManifest.xml:79:13-59
+97            android:enabled="true"
+97-->D:\Project\KaKao Ventical\app\src\main\AndroidManifest.xml:80:13-35
+98            android:exported="false" />
+98-->D:\Project\KaKao Ventical\app\src\main\AndroidManifest.xml:81:13-37
+99
+100        <!-- Auto Detection Service -->
+101        <service
+101-->D:\Project\KaKao Ventical\app\src\main\AndroidManifest.xml:84:9-88:56
+102            android:name="com.kakao.taxi.test.service.AutoDetectionService"
+102-->D:\Project\KaKao Ventical\app\src\main\AndroidManifest.xml:85:13-57
+103            android:enabled="true"
+103-->D:\Project\KaKao Ventical\app\src\main\AndroidManifest.xml:86:13-35
+104            android:exported="false"
+104-->D:\Project\KaKao Ventical\app\src\main\AndroidManifest.xml:87:13-37
+105            android:foregroundServiceType="dataSync" />
+105-->D:\Project\KaKao Ventical\app\src\main\AndroidManifest.xml:88:13-53
+106
+107        <!-- Accessibility Service for Production -->
+108        <service
+108-->D:\Project\KaKao Ventical\app\src\main\AndroidManifest.xml:91:9-101:19
+109            android:name="com.kakao.taxi.test.service.KakaoTaxiAccessibilityService"
+109-->D:\Project\KaKao Ventical\app\src\main\AndroidManifest.xml:92:13-66
+110            android:exported="true"
+110-->D:\Project\KaKao Ventical\app\src\main\AndroidManifest.xml:93:13-36
+111            android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE" >
+111-->D:\Project\KaKao Ventical\app\src\main\AndroidManifest.xml:94:13-79
+112            <intent-filter>
+112-->D:\Project\KaKao Ventical\app\src\main\AndroidManifest.xml:95:13-97:29
+113                <action android:name="android.accessibilityservice.AccessibilityService" />
+113-->D:\Project\KaKao Ventical\app\src\main\AndroidManifest.xml:96:17-92
+113-->D:\Project\KaKao Ventical\app\src\main\AndroidManifest.xml:96:25-89
+114            </intent-filter>
+115
+116            <meta-data
+116-->D:\Project\KaKao Ventical\app\src\main\AndroidManifest.xml:98:13-100:72
+117                android:name="android.accessibilityservice"
+117-->D:\Project\KaKao Ventical\app\src\main\AndroidManifest.xml:99:17-60
+118                android:resource="@xml/accessibility_service_config" />
+118-->D:\Project\KaKao Ventical\app\src\main\AndroidManifest.xml:100:17-69
+119        </service>
+120
+121        <!-- Floating Alert Service -->
+122        <service
+122-->D:\Project\KaKao Ventical\app\src\main\AndroidManifest.xml:104:9-107:40
+123            android:name="com.kakao.taxi.test.service.FloatingAlertService"
+123-->D:\Project\KaKao Ventical\app\src\main\AndroidManifest.xml:105:13-57
+124            android:enabled="true"
+124-->D:\Project\KaKao Ventical\app\src\main\AndroidManifest.xml:106:13-35
+125            android:exported="false" />
+125-->D:\Project\KaKao Ventical\app\src\main\AndroidManifest.xml:107:13-37
+126
+127        <!-- Fast Call Detection Service -->
+128        <service
+128-->D:\Project\KaKao Ventical\app\src\main\AndroidManifest.xml:110:9-114:63
+129            android:name="com.kakao.taxi.test.service.FastCallDetectionService"
+129-->D:\Project\KaKao Ventical\app\src\main\AndroidManifest.xml:111:13-61
+130            android:enabled="true"
+130-->D:\Project\KaKao Ventical\app\src\main\AndroidManifest.xml:112:13-35
+131            android:exported="false"
+131-->D:\Project\KaKao Ventical\app\src\main\AndroidManifest.xml:113:13-37
+132            android:foregroundServiceType="mediaProjection" />
+132-->D:\Project\KaKao Ventical\app\src\main\AndroidManifest.xml:114:13-60
+133
+134        <!-- Floating Debug Service -->
+135        <service
+135-->D:\Project\KaKao Ventical\app\src\main\AndroidManifest.xml:117:9-120:40
+136            android:name="com.kakao.taxi.test.service.FloatingDebugService"
+136-->D:\Project\KaKao Ventical\app\src\main\AndroidManifest.xml:118:13-57
+137            android:enabled="true"
+137-->D:\Project\KaKao Ventical\app\src\main\AndroidManifest.xml:119:13-35
+138            android:exported="false" />
+138-->D:\Project\KaKao Ventical\app\src\main\AndroidManifest.xml:120:13-37
+139
+140        <!-- One Click Auto Service -->
+141        <service
+141-->D:\Project\KaKao Ventical\app\src\main\AndroidManifest.xml:123:9-127:63
+142            android:name="com.kakao.taxi.test.service.OneClickAutoService"
+142-->D:\Project\KaKao Ventical\app\src\main\AndroidManifest.xml:124:13-56
+143            android:enabled="true"
+143-->D:\Project\KaKao Ventical\app\src\main\AndroidManifest.xml:125:13-35
+144            android:exported="false"
+144-->D:\Project\KaKao Ventical\app\src\main\AndroidManifest.xml:126:13-37
+145            android:foregroundServiceType="mediaProjection" />
+145-->D:\Project\KaKao Ventical\app\src\main\AndroidManifest.xml:127:13-60
+146
+147        <!-- 하이브리드 자동화 서비스 (알림 리스너) -->
+148        <service
+148-->D:\Project\KaKao Ventical\app\src\main\AndroidManifest.xml:130:9-137:19
+149            android:name="com.kakao.taxi.test.service.HybridAutomationService"
+149-->D:\Project\KaKao Ventical\app\src\main\AndroidManifest.xml:131:13-60
+150            android:exported="true"
+150-->D:\Project\KaKao Ventical\app\src\main\AndroidManifest.xml:132:13-36
+151            android:permission="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE" >
+151-->D:\Project\KaKao Ventical\app\src\main\AndroidManifest.xml:133:13-87
+152            <intent-filter>
+152-->D:\Project\KaKao Ventical\app\src\main\AndroidManifest.xml:134:13-136:29
+153                <action android:name="android.service.notification.NotificationListenerService" />
+153-->D:\Project\KaKao Ventical\app\src\main\AndroidManifest.xml:135:17-99
+153-->D:\Project\KaKao Ventical\app\src\main\AndroidManifest.xml:135:25-96
+154            </intent-filter>
+155        </service>
+156
+157        <!-- Ultimate Bypass Service -->
+158        <service
+158-->D:\Project\KaKao Ventical\app\src\main\AndroidManifest.xml:140:9-144:72
+159            android:name="com.kakao.taxi.test.service.UltimateBypassService"
+159-->D:\Project\KaKao Ventical\app\src\main\AndroidManifest.xml:141:13-58
+160            android:enabled="true"
+160-->D:\Project\KaKao Ventical\app\src\main\AndroidManifest.xml:142:13-35
+161            android:exported="false"
+161-->D:\Project\KaKao Ventical\app\src\main\AndroidManifest.xml:143:13-37
+162            android:foregroundServiceType="mediaProjection|dataSync" />
+162-->D:\Project\KaKao Ventical\app\src\main\AndroidManifest.xml:144:13-69
+163
+164        <!-- S24 Ultra Screen Capture Service -->
+165        <service
+165-->D:\Project\KaKao Ventical\app\src\main\AndroidManifest.xml:147:9-150:40
+166            android:name="com.kakao.taxi.test.service.S24UltraScreenCaptureService"
+166-->D:\Project\KaKao Ventical\app\src\main\AndroidManifest.xml:148:13-65
+167            android:enabled="true"
+167-->D:\Project\KaKao Ventical\app\src\main\AndroidManifest.xml:149:13-35
+168            android:exported="false" />
+168-->D:\Project\KaKao Ventical\app\src\main\AndroidManifest.xml:150:13-37
+169
+170        <!-- Aggressive Non-Root Service -->
+171        <service
+171-->D:\Project\KaKao Ventical\app\src\main\AndroidManifest.xml:153:9-163:19
+172            android:name="com.kakao.taxi.test.service.AggressiveNonRootService"
+172-->D:\Project\KaKao Ventical\app\src\main\AndroidManifest.xml:154:13-61
+173            android:exported="true"
+173-->D:\Project\KaKao Ventical\app\src\main\AndroidManifest.xml:155:13-36
+174            android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE" >
+174-->D:\Project\KaKao Ventical\app\src\main\AndroidManifest.xml:156:13-79
+175            <intent-filter>
+175-->D:\Project\KaKao Ventical\app\src\main\AndroidManifest.xml:95:13-97:29
+176                <action android:name="android.accessibilityservice.AccessibilityService" />
+176-->D:\Project\KaKao Ventical\app\src\main\AndroidManifest.xml:96:17-92
+176-->D:\Project\KaKao Ventical\app\src\main\AndroidManifest.xml:96:25-89
+177            </intent-filter>
+178
+179            <meta-data
+179-->D:\Project\KaKao Ventical\app\src\main\AndroidManifest.xml:98:13-100:72
+180                android:name="android.accessibilityservice"
+180-->D:\Project\KaKao Ventical\app\src\main\AndroidManifest.xml:99:17-60
+181                android:resource="@xml/aggressive_accessibility_config" />
+181-->D:\Project\KaKao Ventical\app\src\main\AndroidManifest.xml:100:17-69
+182        </service>
+183
+184        <!-- Non-Root Alert Service -->
+185        <service
+185-->D:\Project\KaKao Ventical\app\src\main\AndroidManifest.xml:166:9-170:56
+186            android:name="com.kakao.taxi.test.service.NonRootAlertService"
+186-->D:\Project\KaKao Ventical\app\src\main\AndroidManifest.xml:167:13-56
+187            android:enabled="true"
+187-->D:\Project\KaKao Ventical\app\src\main\AndroidManifest.xml:168:13-35
+188            android:exported="false"
+188-->D:\Project\KaKao Ventical\app\src\main\AndroidManifest.xml:169:13-37
+189            android:foregroundServiceType="dataSync" />
+189-->D:\Project\KaKao Ventical\app\src\main\AndroidManifest.xml:170:13-53
+190
+191        <!-- Extreme Bypass Service -->
+192        <service
+192-->D:\Project\KaKao Ventical\app\src\main\AndroidManifest.xml:173:9-176:40
+193            android:name="com.kakao.taxi.test.service.ExtremeBypassService"
+193-->D:\Project\KaKao Ventical\app\src\main\AndroidManifest.xml:174:13-57
+194            android:enabled="true"
+194-->D:\Project\KaKao Ventical\app\src\main\AndroidManifest.xml:175:13-35
+195            android:exported="false" />
+195-->D:\Project\KaKao Ventical\app\src\main\AndroidManifest.xml:176:13-37
+196
+197        <!-- Android 14 MediaProjection Service -->
+198        <service
+198-->D:\Project\KaKao Ventical\app\src\main\AndroidManifest.xml:179:9-183:63
+199            android:name="com.kakao.taxi.test.service.Android14MediaProjectionService"
+199-->D:\Project\KaKao Ventical\app\src\main\AndroidManifest.xml:180:13-68
+200            android:enabled="true"
+200-->D:\Project\KaKao Ventical\app\src\main\AndroidManifest.xml:181:13-35
+201            android:exported="false"
+201-->D:\Project\KaKao Ventical\app\src\main\AndroidManifest.xml:182:13-37
+202            android:foregroundServiceType="mediaProjection" />
+202-->D:\Project\KaKao Ventical\app\src\main\AndroidManifest.xml:183:13-60
+203        <service
+203-->[com.google.android.gms:play-services-mlkit-text-recognition-common:19.0.0] C:\Users\PC_1M\.gradle\caches\8.10\transforms\1575c7ed5aee5fc1ce8c8401711af602\transformed\play-services-mlkit-text-recognition-common-19.0.0\AndroidManifest.xml:9:9-15:19
+204            android:name="com.google.mlkit.common.internal.MlKitComponentDiscoveryService"
+204-->[com.google.android.gms:play-services-mlkit-text-recognition-common:19.0.0] C:\Users\PC_1M\.gradle\caches\8.10\transforms\1575c7ed5aee5fc1ce8c8401711af602\transformed\play-services-mlkit-text-recognition-common-19.0.0\AndroidManifest.xml:10:13-91
+205            android:directBootAware="true"
+205-->[com.google.mlkit:common:18.8.0] C:\Users\PC_1M\.gradle\caches\8.10\transforms\f08a799daf5ddcef7f9242c2fbb3439e\transformed\common-18.8.0\AndroidManifest.xml:17:13-43
+206            android:exported="false" >
+206-->[com.google.android.gms:play-services-mlkit-text-recognition-common:19.0.0] C:\Users\PC_1M\.gradle\caches\8.10\transforms\1575c7ed5aee5fc1ce8c8401711af602\transformed\play-services-mlkit-text-recognition-common-19.0.0\AndroidManifest.xml:11:13-37
+207            <meta-data
+207-->[com.google.android.gms:play-services-mlkit-text-recognition-common:19.0.0] C:\Users\PC_1M\.gradle\caches\8.10\transforms\1575c7ed5aee5fc1ce8c8401711af602\transformed\play-services-mlkit-text-recognition-common-19.0.0\AndroidManifest.xml:12:13-14:85
+208                android:name="com.google.firebase.components:com.google.mlkit.vision.text.internal.TextRegistrar"
+208-->[com.google.android.gms:play-services-mlkit-text-recognition-common:19.0.0] C:\Users\PC_1M\.gradle\caches\8.10\transforms\1575c7ed5aee5fc1ce8c8401711af602\transformed\play-services-mlkit-text-recognition-common-19.0.0\AndroidManifest.xml:13:17-114
+209                android:value="com.google.firebase.components.ComponentRegistrar" />
+209-->[com.google.android.gms:play-services-mlkit-text-recognition-common:19.0.0] C:\Users\PC_1M\.gradle\caches\8.10\transforms\1575c7ed5aee5fc1ce8c8401711af602\transformed\play-services-mlkit-text-recognition-common-19.0.0\AndroidManifest.xml:14:17-82
+210            <meta-data
+210-->[com.google.mlkit:vision-common:17.3.0] C:\Users\PC_1M\.gradle\caches\8.10\transforms\a114e012c2fcdece5f89b2f8c08418bd\transformed\vision-common-17.3.0\AndroidManifest.xml:12:13-14:85
+211                android:name="com.google.firebase.components:com.google.mlkit.vision.common.internal.VisionCommonRegistrar"
+211-->[com.google.mlkit:vision-common:17.3.0] C:\Users\PC_1M\.gradle\caches\8.10\transforms\a114e012c2fcdece5f89b2f8c08418bd\transformed\vision-common-17.3.0\AndroidManifest.xml:13:17-124
+212                android:value="com.google.firebase.components.ComponentRegistrar" />
+212-->[com.google.mlkit:vision-common:17.3.0] C:\Users\PC_1M\.gradle\caches\8.10\transforms\a114e012c2fcdece5f89b2f8c08418bd\transformed\vision-common-17.3.0\AndroidManifest.xml:14:17-82
+213            <meta-data
+213-->[com.google.mlkit:common:18.8.0] C:\Users\PC_1M\.gradle\caches\8.10\transforms\f08a799daf5ddcef7f9242c2fbb3439e\transformed\common-18.8.0\AndroidManifest.xml:20:13-22:85
+214                android:name="com.google.firebase.components:com.google.mlkit.common.internal.CommonComponentRegistrar"
+214-->[com.google.mlkit:common:18.8.0] C:\Users\PC_1M\.gradle\caches\8.10\transforms\f08a799daf5ddcef7f9242c2fbb3439e\transformed\common-18.8.0\AndroidManifest.xml:21:17-120
+215                android:value="com.google.firebase.components.ComponentRegistrar" />
+215-->[com.google.mlkit:common:18.8.0] C:\Users\PC_1M\.gradle\caches\8.10\transforms\f08a799daf5ddcef7f9242c2fbb3439e\transformed\common-18.8.0\AndroidManifest.xml:22:17-82
+216        </service>
+217
+218        <provider
+218-->[com.google.mlkit:common:18.8.0] C:\Users\PC_1M\.gradle\caches\8.10\transforms\f08a799daf5ddcef7f9242c2fbb3439e\transformed\common-18.8.0\AndroidManifest.xml:9:9-13:38
+219            android:name="com.google.mlkit.common.internal.MlKitInitProvider"
+219-->[com.google.mlkit:common:18.8.0] C:\Users\PC_1M\.gradle\caches\8.10\transforms\f08a799daf5ddcef7f9242c2fbb3439e\transformed\common-18.8.0\AndroidManifest.xml:10:13-78
+220            android:authorities="com.kakao.taxi.test.mlkitinitprovider"
+220-->[com.google.mlkit:common:18.8.0] C:\Users\PC_1M\.gradle\caches\8.10\transforms\f08a799daf5ddcef7f9242c2fbb3439e\transformed\common-18.8.0\AndroidManifest.xml:11:13-69
+221            android:exported="false"
+221-->[com.google.mlkit:common:18.8.0] C:\Users\PC_1M\.gradle\caches\8.10\transforms\f08a799daf5ddcef7f9242c2fbb3439e\transformed\common-18.8.0\AndroidManifest.xml:12:13-37
+222            android:initOrder="99" />
+222-->[com.google.mlkit:common:18.8.0] C:\Users\PC_1M\.gradle\caches\8.10\transforms\f08a799daf5ddcef7f9242c2fbb3439e\transformed\common-18.8.0\AndroidManifest.xml:13:13-35
+223
+224        <activity
+224-->[com.google.android.gms:play-services-base:18.1.0] C:\Users\PC_1M\.gradle\caches\8.10\transforms\750f51d2f3ec5ed7ad7d7a95e4bde0ef\transformed\play-services-base-18.1.0\AndroidManifest.xml:20:9-22:45
+225            android:name="com.google.android.gms.common.api.GoogleApiActivity"
+225-->[com.google.android.gms:play-services-base:18.1.0] C:\Users\PC_1M\.gradle\caches\8.10\transforms\750f51d2f3ec5ed7ad7d7a95e4bde0ef\transformed\play-services-base-18.1.0\AndroidManifest.xml:20:19-85
+226            android:exported="false"
+226-->[com.google.android.gms:play-services-base:18.1.0] C:\Users\PC_1M\.gradle\caches\8.10\transforms\750f51d2f3ec5ed7ad7d7a95e4bde0ef\transformed\play-services-base-18.1.0\AndroidManifest.xml:22:19-43
+227            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+227-->[com.google.android.gms:play-services-base:18.1.0] C:\Users\PC_1M\.gradle\caches\8.10\transforms\750f51d2f3ec5ed7ad7d7a95e4bde0ef\transformed\play-services-base-18.1.0\AndroidManifest.xml:21:19-78
+228
+229        <meta-data
+229-->[com.google.android.gms:play-services-basement:18.1.0] C:\Users\PC_1M\.gradle\caches\8.10\transforms\e8c32c09848c3dba19f21296f8685a69\transformed\play-services-basement-18.1.0\AndroidManifest.xml:21:9-23:69
+230            android:name="com.google.android.gms.version"
+230-->[com.google.android.gms:play-services-basement:18.1.0] C:\Users\PC_1M\.gradle\caches\8.10\transforms\e8c32c09848c3dba19f21296f8685a69\transformed\play-services-basement-18.1.0\AndroidManifest.xml:22:13-58
+231            android:value="@integer/google_play_services_version" />
+231-->[com.google.android.gms:play-services-basement:18.1.0] C:\Users\PC_1M\.gradle\caches\8.10\transforms\e8c32c09848c3dba19f21296f8685a69\transformed\play-services-basement-18.1.0\AndroidManifest.xml:23:13-66
+232
+233        <provider
+233-->[androidx.emoji2:emoji2:1.2.0] C:\Users\PC_1M\.gradle\caches\8.10\transforms\4511b53510cdc146c9eb808777190242\transformed\emoji2-1.2.0\AndroidManifest.xml:24:9-32:20
+234            android:name="androidx.startup.InitializationProvider"
+234-->[androidx.emoji2:emoji2:1.2.0] C:\Users\PC_1M\.gradle\caches\8.10\transforms\4511b53510cdc146c9eb808777190242\transformed\emoji2-1.2.0\AndroidManifest.xml:25:13-67
+235            android:authorities="com.kakao.taxi.test.androidx-startup"
+235-->[androidx.emoji2:emoji2:1.2.0] C:\Users\PC_1M\.gradle\caches\8.10\transforms\4511b53510cdc146c9eb808777190242\transformed\emoji2-1.2.0\AndroidManifest.xml:26:13-68
+236            android:exported="false" >
+236-->[androidx.emoji2:emoji2:1.2.0] C:\Users\PC_1M\.gradle\caches\8.10\transforms\4511b53510cdc146c9eb808777190242\transformed\emoji2-1.2.0\AndroidManifest.xml:27:13-37
+237            <meta-data
+237-->[androidx.emoji2:emoji2:1.2.0] C:\Users\PC_1M\.gradle\caches\8.10\transforms\4511b53510cdc146c9eb808777190242\transformed\emoji2-1.2.0\AndroidManifest.xml:29:13-31:52
+238                android:name="androidx.emoji2.text.EmojiCompatInitializer"
+238-->[androidx.emoji2:emoji2:1.2.0] C:\Users\PC_1M\.gradle\caches\8.10\transforms\4511b53510cdc146c9eb808777190242\transformed\emoji2-1.2.0\AndroidManifest.xml:30:17-75
+239                android:value="androidx.startup" />
+239-->[androidx.emoji2:emoji2:1.2.0] C:\Users\PC_1M\.gradle\caches\8.10\transforms\4511b53510cdc146c9eb808777190242\transformed\emoji2-1.2.0\AndroidManifest.xml:31:17-49
+240            <meta-data
+240-->[androidx.lifecycle:lifecycle-process:2.7.0] C:\Users\PC_1M\.gradle\caches\8.10\transforms\ea3b1fd4e55869ffeda3e51779075995\transformed\lifecycle-process-2.7.0\AndroidManifest.xml:29:13-31:52
+241                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+241-->[androidx.lifecycle:lifecycle-process:2.7.0] C:\Users\PC_1M\.gradle\caches\8.10\transforms\ea3b1fd4e55869ffeda3e51779075995\transformed\lifecycle-process-2.7.0\AndroidManifest.xml:30:17-78
+242                android:value="androidx.startup" />
+242-->[androidx.lifecycle:lifecycle-process:2.7.0] C:\Users\PC_1M\.gradle\caches\8.10\transforms\ea3b1fd4e55869ffeda3e51779075995\transformed\lifecycle-process-2.7.0\AndroidManifest.xml:31:17-49
+243            <meta-data
+243-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\PC_1M\.gradle\caches\8.10\transforms\7d8a05679913e46ea9f295c91d2deadf\transformed\profileinstaller-1.3.0\AndroidManifest.xml:29:13-31:52
+244                android:name="androidx.profileinstaller.ProfileInstallerInitializer"
+244-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\PC_1M\.gradle\caches\8.10\transforms\7d8a05679913e46ea9f295c91d2deadf\transformed\profileinstaller-1.3.0\AndroidManifest.xml:30:17-85
+245                android:value="androidx.startup" />
+245-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\PC_1M\.gradle\caches\8.10\transforms\7d8a05679913e46ea9f295c91d2deadf\transformed\profileinstaller-1.3.0\AndroidManifest.xml:31:17-49
+246        </provider>
+247
+248        <meta-data
+248-->[dev.rikka.shizuku:provider:13.1.5] C:\Users\PC_1M\.gradle\caches\8.10\transforms\21d8663c78e94575dfa5a10cb6f90b86\transformed\provider-13.1.5\AndroidManifest.xml:11:9-13:36
+249            android:name="moe.shizuku.client.V3_SUPPORT"
+249-->[dev.rikka.shizuku:provider:13.1.5] C:\Users\PC_1M\.gradle\caches\8.10\transforms\21d8663c78e94575dfa5a10cb6f90b86\transformed\provider-13.1.5\AndroidManifest.xml:12:13-57
+250            android:value="true" />
+250-->[dev.rikka.shizuku:provider:13.1.5] C:\Users\PC_1M\.gradle\caches\8.10\transforms\21d8663c78e94575dfa5a10cb6f90b86\transformed\provider-13.1.5\AndroidManifest.xml:13:13-33
+251
+252        <receiver
+252-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\PC_1M\.gradle\caches\8.10\transforms\7d8a05679913e46ea9f295c91d2deadf\transformed\profileinstaller-1.3.0\AndroidManifest.xml:34:9-52:20
+253            android:name="androidx.profileinstaller.ProfileInstallReceiver"
+253-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\PC_1M\.gradle\caches\8.10\transforms\7d8a05679913e46ea9f295c91d2deadf\transformed\profileinstaller-1.3.0\AndroidManifest.xml:35:13-76
+254            android:directBootAware="false"
+254-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\PC_1M\.gradle\caches\8.10\transforms\7d8a05679913e46ea9f295c91d2deadf\transformed\profileinstaller-1.3.0\AndroidManifest.xml:36:13-44
+255            android:enabled="true"
+255-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\PC_1M\.gradle\caches\8.10\transforms\7d8a05679913e46ea9f295c91d2deadf\transformed\profileinstaller-1.3.0\AndroidManifest.xml:37:13-35
+256            android:exported="true"
+256-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\PC_1M\.gradle\caches\8.10\transforms\7d8a05679913e46ea9f295c91d2deadf\transformed\profileinstaller-1.3.0\AndroidManifest.xml:38:13-36
+257            android:permission="android.permission.DUMP" >
+257-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\PC_1M\.gradle\caches\8.10\transforms\7d8a05679913e46ea9f295c91d2deadf\transformed\profileinstaller-1.3.0\AndroidManifest.xml:39:13-57
+258            <intent-filter>
+258-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\PC_1M\.gradle\caches\8.10\transforms\7d8a05679913e46ea9f295c91d2deadf\transformed\profileinstaller-1.3.0\AndroidManifest.xml:40:13-42:29
+259                <action android:name="androidx.profileinstaller.action.INSTALL_PROFILE" />
+259-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\PC_1M\.gradle\caches\8.10\transforms\7d8a05679913e46ea9f295c91d2deadf\transformed\profileinstaller-1.3.0\AndroidManifest.xml:41:17-91
+259-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\PC_1M\.gradle\caches\8.10\transforms\7d8a05679913e46ea9f295c91d2deadf\transformed\profileinstaller-1.3.0\AndroidManifest.xml:41:25-88
+260            </intent-filter>
+261            <intent-filter>
+261-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\PC_1M\.gradle\caches\8.10\transforms\7d8a05679913e46ea9f295c91d2deadf\transformed\profileinstaller-1.3.0\AndroidManifest.xml:43:13-45:29
+262                <action android:name="androidx.profileinstaller.action.SKIP_FILE" />
+262-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\PC_1M\.gradle\caches\8.10\transforms\7d8a05679913e46ea9f295c91d2deadf\transformed\profileinstaller-1.3.0\AndroidManifest.xml:44:17-85
+262-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\PC_1M\.gradle\caches\8.10\transforms\7d8a05679913e46ea9f295c91d2deadf\transformed\profileinstaller-1.3.0\AndroidManifest.xml:44:25-82
+263            </intent-filter>
+264            <intent-filter>
+264-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\PC_1M\.gradle\caches\8.10\transforms\7d8a05679913e46ea9f295c91d2deadf\transformed\profileinstaller-1.3.0\AndroidManifest.xml:46:13-48:29
+265                <action android:name="androidx.profileinstaller.action.SAVE_PROFILE" />
+265-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\PC_1M\.gradle\caches\8.10\transforms\7d8a05679913e46ea9f295c91d2deadf\transformed\profileinstaller-1.3.0\AndroidManifest.xml:47:17-88
+265-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\PC_1M\.gradle\caches\8.10\transforms\7d8a05679913e46ea9f295c91d2deadf\transformed\profileinstaller-1.3.0\AndroidManifest.xml:47:25-85
+266            </intent-filter>
+267            <intent-filter>
+267-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\PC_1M\.gradle\caches\8.10\transforms\7d8a05679913e46ea9f295c91d2deadf\transformed\profileinstaller-1.3.0\AndroidManifest.xml:49:13-51:29
+268                <action android:name="androidx.profileinstaller.action.BENCHMARK_OPERATION" />
+268-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\PC_1M\.gradle\caches\8.10\transforms\7d8a05679913e46ea9f295c91d2deadf\transformed\profileinstaller-1.3.0\AndroidManifest.xml:50:17-95
+268-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\PC_1M\.gradle\caches\8.10\transforms\7d8a05679913e46ea9f295c91d2deadf\transformed\profileinstaller-1.3.0\AndroidManifest.xml:50:25-92
+269            </intent-filter>
+270        </receiver>
+271
+272        <service
+272-->[com.google.android.datatransport:transport-backend-cct:2.3.3] C:\Users\PC_1M\.gradle\caches\8.10\transforms\c030b3eea51ad067caa5c1452d5a4518\transformed\transport-backend-cct-2.3.3\AndroidManifest.xml:29:9-35:19
+273            android:name="com.google.android.datatransport.runtime.backends.TransportBackendDiscovery"
+273-->[com.google.android.datatransport:transport-backend-cct:2.3.3] C:\Users\PC_1M\.gradle\caches\8.10\transforms\c030b3eea51ad067caa5c1452d5a4518\transformed\transport-backend-cct-2.3.3\AndroidManifest.xml:30:13-103
+274            android:exported="false" >
+274-->[com.google.android.datatransport:transport-backend-cct:2.3.3] C:\Users\PC_1M\.gradle\caches\8.10\transforms\c030b3eea51ad067caa5c1452d5a4518\transformed\transport-backend-cct-2.3.3\AndroidManifest.xml:31:13-37
+275            <meta-data
+275-->[com.google.android.datatransport:transport-backend-cct:2.3.3] C:\Users\PC_1M\.gradle\caches\8.10\transforms\c030b3eea51ad067caa5c1452d5a4518\transformed\transport-backend-cct-2.3.3\AndroidManifest.xml:32:13-34:39
+276                android:name="backend:com.google.android.datatransport.cct.CctBackendFactory"
+276-->[com.google.android.datatransport:transport-backend-cct:2.3.3] C:\Users\PC_1M\.gradle\caches\8.10\transforms\c030b3eea51ad067caa5c1452d5a4518\transformed\transport-backend-cct-2.3.3\AndroidManifest.xml:33:17-94
+277                android:value="cct" />
+277-->[com.google.android.datatransport:transport-backend-cct:2.3.3] C:\Users\PC_1M\.gradle\caches\8.10\transforms\c030b3eea51ad067caa5c1452d5a4518\transformed\transport-backend-cct-2.3.3\AndroidManifest.xml:34:17-36
+278        </service>
+279        <service
+279-->[com.google.android.datatransport:transport-runtime:2.2.6] C:\Users\PC_1M\.gradle\caches\8.10\transforms\879d479aa3e99db3687f6203d9525c56\transformed\transport-runtime-2.2.6\AndroidManifest.xml:26:9-30:19
+280            android:name="com.google.android.datatransport.runtime.scheduling.jobscheduling.JobInfoSchedulerService"
+280-->[com.google.android.datatransport:transport-runtime:2.2.6] C:\Users\PC_1M\.gradle\caches\8.10\transforms\879d479aa3e99db3687f6203d9525c56\transformed\transport-runtime-2.2.6\AndroidManifest.xml:27:13-117
+281            android:exported="false"
+281-->[com.google.android.datatransport:transport-runtime:2.2.6] C:\Users\PC_1M\.gradle\caches\8.10\transforms\879d479aa3e99db3687f6203d9525c56\transformed\transport-runtime-2.2.6\AndroidManifest.xml:28:13-37
+282            android:permission="android.permission.BIND_JOB_SERVICE" >
+282-->[com.google.android.datatransport:transport-runtime:2.2.6] C:\Users\PC_1M\.gradle\caches\8.10\transforms\879d479aa3e99db3687f6203d9525c56\transformed\transport-runtime-2.2.6\AndroidManifest.xml:29:13-69
+283        </service>
+284
+285        <receiver
+285-->[com.google.android.datatransport:transport-runtime:2.2.6] C:\Users\PC_1M\.gradle\caches\8.10\transforms\879d479aa3e99db3687f6203d9525c56\transformed\transport-runtime-2.2.6\AndroidManifest.xml:32:9-34:40
+286            android:name="com.google.android.datatransport.runtime.scheduling.jobscheduling.AlarmManagerSchedulerBroadcastReceiver"
+286-->[com.google.android.datatransport:transport-runtime:2.2.6] C:\Users\PC_1M\.gradle\caches\8.10\transforms\879d479aa3e99db3687f6203d9525c56\transformed\transport-runtime-2.2.6\AndroidManifest.xml:33:13-132
+287            android:exported="false" />
+287-->[com.google.android.datatransport:transport-runtime:2.2.6] C:\Users\PC_1M\.gradle\caches\8.10\transforms\879d479aa3e99db3687f6203d9525c56\transformed\transport-runtime-2.2.6\AndroidManifest.xml:34:13-37
+288    </application>
+289
+290</manifest>

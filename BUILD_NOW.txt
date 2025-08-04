@@ -1,0 +1,30 @@
+========================================
+  APK 빌드 실행 방법
+========================================
+
+1. Windows 명령 프롬프트(CMD) 열기:
+   - Windows 키 + R
+   - "cmd" 입력 후 Enter
+
+2. 프로젝트 폴더로 이동:
+   cd "D:\Project\KaKao Ventical"
+
+3. 빌드 실행 (다음 중 하나 선택):
+
+   [옵션 1] 빌드만:
+   build_apk.bat
+
+   [옵션 2] 빌드 + 설치:
+   build_and_install.bat
+
+4. 빌드 완료 후 APK 위치:
+   app\build\outputs\apk\debug\app-debug.apk
+
+========================================
+
+또는 PowerShell에서:
+
+cd "D:\Project\KaKao Ventical"
+.\build_apk.bat
+
+========================================

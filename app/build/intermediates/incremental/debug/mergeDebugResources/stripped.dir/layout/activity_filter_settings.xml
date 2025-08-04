@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="#1a1a1a">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="🚕 콜 필터 설정"
+        android:textSize="24sp"
+        android:textColor="#FFD700"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:layout_marginBottom="24dp"/>
+
+    <!-- 최소 금액 설정 -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="최소 금액"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp"
+        android:layout_marginTop="16dp"/>
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="8dp">
+        
+        <SeekBar
+            android:id="@+id/seekBarMinAmount"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:max="20000"
+            android:progress="5000"
+            android:progressTint="#FFD700"/>
+        
+        <TextView
+            android:id="@+id/tvMinAmountValue"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:text="5,000원"
+            android:textColor="#FFD700"
+            android:textSize="16sp"
+            android:gravity="end"/>
+    </LinearLayout>
+
+    <!-- 최대 거리 설정 -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="최대 거리"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp"
+        android:layout_marginTop="24dp"/>
+    
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="8dp">
+        
+        <SeekBar
+            android:id="@+id/seekBarMaxDistance"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:max="100"
+            android:progress="30"
+            android:progressTint="#FFD700"/>
+        
+        <TextView
+            android:id="@+id/tvMaxDistanceValue"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:text="3.0km"
+            android:textColor="#FFD700"
+            android:textSize="16sp"
+            android:gravity="end"/>
+    </LinearLayout>
+
+    <!-- 선호 지역 설정 -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="선호 지역"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp"
+        android:layout_marginTop="24dp"/>
+    
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginTop="8dp"
+        android:background="#2a2a2a"
+        android:padding="8dp">
+        
+        <LinearLayout
+            android:id="@+id/areaCheckboxContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            
+            <CheckBox
+                android:id="@+id/cbGangnam"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="강남구"
+                android:textColor="#FFFFFF"
+                android:buttonTint="#FFD700"
+                android:checked="true"/>
+            
+            <CheckBox
+                android:id="@+id/cbSeocho"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="서초구"
+                android:textColor="#FFFFFF"
+                android:buttonTint="#FFD700"
+                android:checked="true"/>
+            
+            <CheckBox
+                android:id="@+id/cbSongpa"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="송파구"
+                android:textColor="#FFFFFF"
+                android:buttonTint="#FFD700"
+                android:checked="true"/>
+            
+            <CheckBox
+                android:id="@+id/cbGangdong"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="강동구"
+                android:textColor="#FFFFFF"
+                android:buttonTint="#FFD700"/>
+            
+            <CheckBox
+                android:id="@+id/cbYongsan"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="용산구"
+                android:textColor="#FFFFFF"
+                android:buttonTint="#FFD700"/>
+            
+            <CheckBox
+                android:id="@+id/cbJongno"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="종로구"
+                android:textColor="#FFFFFF"
+                android:buttonTint="#FFD700"/>
+            
+            <CheckBox
+                android:id="@+id/cbJung"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="중구"
+                android:textColor="#FFFFFF"
+                android:buttonTint="#FFD700"/>
+            
+            <CheckBox
+                android:id="@+id/cbMapo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="마포구"
+                android:textColor="#FFFFFF"
+                android:buttonTint="#FFD700"/>
+            
+        </LinearLayout>
+    </ScrollView>
+
+    <!-- 추가 옵션 -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="추가 옵션"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp"
+        android:layout_marginTop="24dp"/>
+    
+    <CheckBox
+        android:id="@+id/cbAutoAccept"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="필터 통과시 자동 수락"
+        android:textColor="#FFFFFF"
+        android:buttonTint="#FFD700"
+        android:checked="true"
+        android:layout_marginTop="8dp"/>
+    
+    <CheckBox
+        android:id="@+id/cbPriorityHigh"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="고액 콜 우선"
+        android:textColor="#FFFFFF"
+        android:buttonTint="#FFD700"/>
+    
+    <CheckBox
+        android:id="@+id/cbAvoidTraffic"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="교통 체증 지역 회피"
+        android:textColor="#FFFFFF"
+        android:buttonTint="#FFD700"/>
+
+    <!-- 저장 버튼 -->
+    <Button
+        android:id="@+id/btnSaveSettings"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="설정 저장"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:backgroundTint="#FFD700"
+        android:textColor="#000000"
+        android:layout_marginTop="32dp"/>
+
+</LinearLayout>
