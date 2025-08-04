@@ -1,0 +1,39 @@
+com.kakao.taxi.test.app-pngs-0 D:\Project\KaKao Ventical\app\build\generated\res\pngs\debug
+com.kakao.taxi.test.app-resValues-1 D:\Project\KaKao Ventical\app\build\generated\res\resValues\debug
+com.kakao.taxi.test.app-packageDebugResources-2 D:\Project\KaKao Ventical\app\build\intermediates\incremental\debug\packageDebugResources\merged.dir
+com.kakao.taxi.test.app-packageDebugResources-3 D:\Project\KaKao Ventical\app\build\intermediates\incremental\debug\packageDebugResources\stripped.dir
+com.kakao.taxi.test.app-debug-4 D:\Project\KaKao Ventical\app\build\intermediates\merged_res\debug\mergeDebugResources
+com.kakao.taxi.test.app-debug-5 D:\Project\KaKao Ventical\app\src\debug\res
+com.kakao.taxi.test.app-main-6 D:\Project\KaKao Ventical\app\src\main\res
+com.kakao.taxi.test.app-lifecycle-runtime-2.7.0-7 D:\caches\8.10\transforms\18628b3a817411ba65601517ea422ff8\transformed\lifecycle-runtime-2.7.0\res
+com.kakao.taxi.test.app-lifecycle-livedata-core-2.7.0-8 D:\caches\8.10\transforms\1ae9495c0c55753c5efa7dc10ddcd3ce\transformed\lifecycle-livedata-core-2.7.0\res
+com.kakao.taxi.test.app-core-1.12.0-9 D:\caches\8.10\transforms\2844b743be62bb65b978907dade3c02a\transformed\core-1.12.0\res
+com.kakao.taxi.test.app-lifecycle-viewmodel-savedstate-2.7.0-10 D:\caches\8.10\transforms\2a6df28df36cc845ff25dc5d7ca1445d\transformed\lifecycle-viewmodel-savedstate-2.7.0\res
+com.kakao.taxi.test.app-lifecycle-viewmodel-ktx-2.7.0-11 D:\caches\8.10\transforms\2c38b364e69d5fc414e9c63dc8553869\transformed\lifecycle-viewmodel-ktx-2.7.0\res
+com.kakao.taxi.test.app-material-1.11.0-12 D:\caches\8.10\transforms\3301278181c20f85818334c9df043a04\transformed\material-1.11.0\res
+com.kakao.taxi.test.app-emoji2-views-helper-1.2.0-13 D:\caches\8.10\transforms\3a16a25618962ff72382fef39c1673ca\transformed\emoji2-views-helper-1.2.0\res
+com.kakao.taxi.test.app-emoji2-1.2.0-14 D:\caches\8.10\transforms\4511b53510cdc146c9eb808777190242\transformed\emoji2-1.2.0\res
+com.kakao.taxi.test.app-activity-1.8.0-15 D:\caches\8.10\transforms\591c669bd65dc856e1909415ae17ab70\transformed\activity-1.8.0\res
+com.kakao.taxi.test.app-coordinatorlayout-1.1.0-16 D:\caches\8.10\transforms\68561f8aedcd375984bf498c51324e85\transformed\coordinatorlayout-1.1.0\res
+com.kakao.taxi.test.app-appcompat-1.6.1-17 D:\caches\8.10\transforms\6a703914311c50d80c7f641b598a9755\transformed\appcompat-1.6.1\res
+com.kakao.taxi.test.app-lifecycle-livedata-2.7.0-18 D:\caches\8.10\transforms\6fa23dfc4b1d834d77143e37be33b061\transformed\lifecycle-livedata-2.7.0\res
+com.kakao.taxi.test.app-savedstate-1.2.1-19 D:\caches\8.10\transforms\73f702b123260131d935f2bcda765926\transformed\savedstate-1.2.1\res
+com.kakao.taxi.test.app-play-services-base-18.1.0-20 D:\caches\8.10\transforms\750f51d2f3ec5ed7ad7d7a95e4bde0ef\transformed\play-services-base-18.1.0\res
+com.kakao.taxi.test.app-startup-runtime-1.1.1-21 D:\caches\8.10\transforms\78e5d38f13f27583bbd8b91a9daa9432\transformed\startup-runtime-1.1.1\res
+com.kakao.taxi.test.app-profileinstaller-1.3.0-22 D:\caches\8.10\transforms\7d8a05679913e46ea9f295c91d2deadf\transformed\profileinstaller-1.3.0\res
+com.kakao.taxi.test.app-core-runtime-2.2.0-23 D:\caches\8.10\transforms\84aa004d8ccab1a88ec8a657da148c19\transformed\core-runtime-2.2.0\res
+com.kakao.taxi.test.app-fragment-1.3.6-24 D:\caches\8.10\transforms\873e4ed2b28015c5ca9192f827253426\transformed\fragment-1.3.6\res
+com.kakao.taxi.test.app-viewpager2-1.0.0-25 D:\caches\8.10\transforms\88bc17f33a5cea6691076b809abbafc7\transformed\viewpager2-1.0.0\res
+com.kakao.taxi.test.app-drawerlayout-1.1.1-26 D:\caches\8.10\transforms\90c116ba876abc3e2ae13286b9e0b79b\transformed\drawerlayout-1.1.1\res
+com.kakao.taxi.test.app-lifecycle-viewmodel-2.7.0-27 D:\caches\8.10\transforms\9ecfd516151abf809625f5b696f5e8a0\transformed\lifecycle-viewmodel-2.7.0\res
+com.kakao.taxi.test.app-transition-1.2.0-28 D:\caches\8.10\transforms\ab6abac2ab4f45fac9a27feb91a42469\transformed\transition-1.2.0\res
+com.kakao.taxi.test.app-cardview-1.0.0-29 D:\caches\8.10\transforms\ac61f27084882cc6d49523c80a828caf\transformed\cardview-1.0.0\res
+com.kakao.taxi.test.app-lifecycle-livedata-core-ktx-2.7.0-30 D:\caches\8.10\transforms\cfefa61e4a6ddd1e110ff76507c1014c\transformed\lifecycle-livedata-core-ktx-2.7.0\res
+com.kakao.taxi.test.app-constraintlayout-2.1.4-31 D:\caches\8.10\transforms\d44e3f4e9f51e4e5420c30a3f6a5e5d0\transformed\constraintlayout-2.1.4\res
+com.kakao.taxi.test.app-lifecycle-runtime-ktx-2.7.0-32 D:\caches\8.10\transforms\d4a6f9d3801989da3c429eba819efda6\transformed\lifecycle-runtime-ktx-2.7.0\res
+com.kakao.taxi.test.app-recyclerview-1.1.0-33 D:\caches\8.10\transforms\dcf22e80d98ef1c8f6ae984d979e3323\transformed\recyclerview-1.1.0\res
+com.kakao.taxi.test.app-annotation-experimental-1.3.0-34 D:\caches\8.10\transforms\e0ff3b8cfccab78153fb1eff799c3aa6\transformed\annotation-experimental-1.3.0\res
+com.kakao.taxi.test.app-core-ktx-1.12.0-35 D:\caches\8.10\transforms\e840b375cff4f3844798cd9eb671e21f\transformed\core-ktx-1.12.0\res
+com.kakao.taxi.test.app-play-services-basement-18.1.0-36 D:\caches\8.10\transforms\e8c32c09848c3dba19f21296f8685a69\transformed\play-services-basement-18.1.0\res
+com.kakao.taxi.test.app-lifecycle-process-2.7.0-37 D:\caches\8.10\transforms\ea3b1fd4e55869ffeda3e51779075995\transformed\lifecycle-process-2.7.0\res
+com.kakao.taxi.test.app-appcompat-resources-1.6.1-38 D:\caches\8.10\transforms\ef257415ec73410c1eee16b0e2a200e0\transformed\appcompat-resources-1.6.1\res

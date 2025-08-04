@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+    <!-- Collapsed View (작은 플로팅 버튼) -->
+    <ImageButton
+        android:id="@+id/collapsed_view"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:background="@drawable/circle_background"
+        android:src="@android:drawable/ic_menu_more"
+        android:elevation="6dp" />
+
+    <!-- Expanded View (확장된 컨트롤 패널) -->
+    <LinearLayout
+        android:id="@+id/expanded_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/rounded_background"
+        android:orientation="vertical"
+        android:padding="8dp"
+        android:visibility="gone"
+        android:elevation="8dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="택시 자동 감지"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:textColor="@android:color/white"
+            android:layout_marginBottom="8dp" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/btn_start_detection"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:background="@drawable/button_background"
+                android:src="@android:drawable/ic_media_play"
+                android:layout_margin="4dp" />
+
+            <ImageButton
+                android:id="@+id/btn_stop_detection"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:background="@drawable/button_background"
+                android:src="@android:drawable/ic_media_pause"
+                android:layout_margin="4dp" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@android:color/darker_gray"
+            android:layout_marginVertical="8dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="테스트 기능"
+            android:textSize="12sp"
+            android:textColor="@android:color/white"
+            android:layout_marginBottom="4dp" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/btn_test_template"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@drawable/button_background"
+                android:src="@android:drawable/ic_menu_search"
+                android:layout_margin="2dp" />
+
+            <ImageButton
+                android:id="@+id/btn_test_ocr"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@drawable/button_background"
+                android:src="@android:drawable/ic_menu_view"
+                android:layout_margin="2dp" />
+
+            <ImageButton
+                android:id="@+id/btn_test_click"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@drawable/button_background"
+                android:src="@android:drawable/ic_menu_set_as"
+                android:layout_margin="2dp" />
+
+        </LinearLayout>
+
+        <ImageButton
+            android:id="@+id/btn_close"
+            android:layout_width="match_parent"
+            android:layout_height="36dp"
+            android:background="@drawable/button_background"
+            android:src="@android:drawable/ic_menu_close_clear_cancel"
+            android:layout_marginTop="8dp" />
+
+    </LinearLayout>
+
+</FrameLayout>

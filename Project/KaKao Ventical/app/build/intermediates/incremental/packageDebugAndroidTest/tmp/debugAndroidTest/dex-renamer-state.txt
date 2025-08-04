@@ -1,0 +1,7 @@
+#Sun Aug 03 15:51:49 KST 2025
+base.0=D\:\\Project\\KaKao Ventical\\app\\build\\intermediates\\dex\\debugAndroidTest\\mergeExtDexDebugAndroidTest\\classes.dex
+base.1=D\:\\Project\\KaKao Ventical\\app\\build\\intermediates\\dex\\debugAndroidTest\\mergeProjectDexDebugAndroidTest\\0\\classes.dex
+path.0=classes.dex
+path.1=0/classes.dex
+renamed.0=classes.dex
+renamed.1=classes2.dex

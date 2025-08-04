@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">카카오 택시 테스트</string>
+    <string name="accessibility_service_description">카카오 택시 콜 자동 수락을 위한 서비스입니다. 노란색 수락 버튼을 자동으로 감지하고 설정된 조건에 맞는 콜을 자동으로 수락합니다.</string>
+</resources>
